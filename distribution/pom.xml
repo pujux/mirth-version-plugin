@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Copyright 2021 Kaur Palang
+  Copyright 2023 Julian Pufler
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -16,14 +17,13 @@
 -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.kaurpalang</groupId>
-        <artifactId>mirthpluginsample</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>com.dedalus</groupId>
+        <artifactId>communication-platform-version-plugin</artifactId>
+        <version>0.0.1</version>
     </parent>
 
     <artifactId>distribution</artifactId>
@@ -86,15 +86,10 @@
                             <url>${plugin.url}</url>
                             <mirthVersion>${plugin.mirthVersion}</mirthVersion>
                             <pluginVersion>${plugin.version}</pluginVersion>
-                            <outputPath>${project.basedir}/plugin.xml</outputPath>
+                            <pluginXmlOutputPath>${project.basedir}/plugin.xml</pluginXmlOutputPath>
                         </configuration>
                     </execution>
                 </executions>
-
-                <!-- Apply aggregatorPath option to all executions -->
-                <configuration>
-                    <aggregatorPath>${processor.aggregator.path}</aggregatorPath>
-                </configuration>
             </plugin>
 
             <!-- Generate plugin zipfile -->

@@ -5,3 +5,4 @@ target/
 *.json
 plugin.xml
 *.jar
+keystore.jks

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Copyright 2021 Kaur Palang
+  Copyright 2023 Julian Pufler
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -16,22 +17,13 @@
 -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.kaurpalang</groupId>
-    <artifactId>mirthpluginsample</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>com.dedalus</groupId>
+    <artifactId>communication-platform-version-plugin</artifactId>
+    <version>0.0.1</version>
     <packaging>pom</packaging>
-
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
 
     <modules>
         <module>server</module>
@@ -45,34 +37,47 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <mirth.version>3.12.0</mirth.version>
+        <mirth.version>4.4.0</mirth.version>
 
         <maven-processor-plugin.version>4.5</maven-processor-plugin.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven-jarsigner-plugin.version>3.0.0</maven-jarsigner-plugin.version>
-        <mirth-plugin-maven-plugin.version>1.0.2-SNAPSHOT</mirth-plugin-maven-plugin.version>
+        <mirth-plugin-maven-plugin.version>2.0.1</mirth-plugin-maven-plugin.version>
         <lombok.version>1.18.22</lombok.version>
         <miglayout.version>3.7.4</miglayout.version>
+        <log4j.version>2.17.2</log4j.version>
 
         <!-- Where should annotation processor generate aggregation file -->
         <processor.aggregator.path>distribution/aggregated.json</processor.aggregator.path>
 
         <!-- Plugin details -->
-        <plugin.path>plugintest</plugin.path>
-        <plugin.name>Sample testing plugin</plugin.name>
-        <plugin.url>www.com</plugin.url>
-        <plugin.author>Kaur Palang</plugin.author>
-        <plugin.version>15</plugin.version>
-        <plugin.mirthVersion>3.12.0</plugin.mirthVersion>
-        <plugin.archive.name>sampleplugin</plugin.archive.name>
+        <plugin.path>versionplugin</plugin.path>
+        <plugin.name>Communication Platform Version Plugin</plugin.name>
+        <plugin.url>https://github.com/pujux/communication-platform-version-plugin</plugin.url>
+        <plugin.author>Julian Pufler</plugin.author>
+        <plugin.version>${project.version}</plugin.version>
+        <plugin.description>This plugin is used to display the communication platform version in the GUI</plugin.description>
+        <plugin.mirthVersion>4.4.0,4.3.0,4.2.0,4.1.1,4.1.0</plugin.mirthVersion>
+        <plugin.archive.name>versionplugin-${project.version}</plugin.archive.name>
     </properties>
 
     <repositories>
         <repository>
-            <id>repsy</id>
+            <id>repsy-default</id>
+            <url>https://repo.repsy.io/mvn/kpalang/default</url>
+        </repository>
+        <repository>
+            <id>repsy-mirthconnect</id>
             <url>https://repo.repsy.io/mvn/kpalang/mirthconnect</url>
         </repository>
     </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repsy-default</id>
+            <url>https://repo.repsy.io/mvn/kpalang/default</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencies>
         <!-- Helper plugin to handle Mirth plugin specific tasks. -->
@@ -83,15 +88,16 @@
         </dependency>
 
         <dependency>
-            <groupId>com.mirth.connect</groupId>
-            <artifactId>mirth-server</artifactId>
-            <version>${mirth.version}</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -143,7 +149,7 @@
                     <keystore>${project.parent.basedir}/certificate/keystore.jks</keystore>
                     <alias>selfsigned</alias>
                     <storepass>storepass</storepass>
-                    <keypass>keypass</keypass>
+                    <keypass>storepass</keypass>
                 </configuration>
             </plugin>
         </plugins>
