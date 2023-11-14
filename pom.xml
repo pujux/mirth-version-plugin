@@ -37,7 +37,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <mirth.version>4.4.0</mirth.version>
+        <mirth.version>4.4.1</mirth.version>
 
         <maven-processor-plugin.version>4.5</maven-processor-plugin.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
@@ -57,7 +57,7 @@
         <plugin.author>Julian Pufler</plugin.author>
         <plugin.version>${project.version}</plugin.version>
         <plugin.description>This plugin is used to display the communication platform version in the GUI</plugin.description>
-        <plugin.mirthVersion>4.4.0,4.3.0,4.2.0,4.1.1,4.1.0</plugin.mirthVersion>
+        <plugin.mirthVersion>4.4.1,4.4.0,4.3.0,4.2.0,4.1.1,4.1.0</plugin.mirthVersion>
         <plugin.archive.name>versionplugin-${project.version}</plugin.archive.name>
     </properties>
 
@@ -99,6 +99,12 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.swinglabs.swingx</groupId>
+            <artifactId>swingx-core</artifactId>
+            <version>1.6.5-1</version>
         </dependency>
     </dependencies>
 

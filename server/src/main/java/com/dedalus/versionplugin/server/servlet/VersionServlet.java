@@ -21,7 +21,6 @@ import com.kaurpalang.mirth.annotationsplugin.annotation.MirthApiProvider;
 import com.kaurpalang.mirth.annotationsplugin.type.ApiProviderType;
 import com.dedalus.versionplugin.shared.Constants;
 import com.dedalus.versionplugin.shared.interfaces.VersionServletInterface;
-import com.dedalus.versionplugin.shared.models.VersionModel;
 import com.mirth.connect.server.api.MirthServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
@@ -35,8 +34,8 @@ public class VersionServlet extends MirthServlet implements VersionServletInterf
     }
 
     @Override
-    public VersionModel getVersionData() {
+    public String getVersionData() {
         String version = System.getenv("COMPLATFORM_VERSION");
-        return new VersionModel(version);
+        return version;
     }
 }

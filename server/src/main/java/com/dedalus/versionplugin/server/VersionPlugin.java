@@ -18,9 +18,7 @@
 package com.dedalus.versionplugin.server;
 
 import com.kaurpalang.mirth.annotationsplugin.annotation.MirthServerClass;
-import com.dedalus.versionplugin.shared.interfaces.VersionServletInterface;
 import com.dedalus.versionplugin.shared.Constants;
-import com.mirth.connect.client.core.api.util.OperationUtil;
 import com.mirth.connect.model.ExtensionPermission;
 import com.mirth.connect.plugins.ServicePlugin;
 import java.util.HashMap;

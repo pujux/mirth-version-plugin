@@ -19,12 +19,9 @@ package com.dedalus.versionplugin.shared.interfaces;
 
 import com.kaurpalang.mirth.annotationsplugin.annotation.MirthApiProvider;
 import com.kaurpalang.mirth.annotationsplugin.type.ApiProviderType;
-import com.dedalus.versionplugin.shared.models.VersionModel;
 import com.mirth.connect.client.core.ClientException;
 import com.mirth.connect.client.core.api.BaseServletInterface;
 import com.mirth.connect.client.core.api.MirthOperation;
-import com.mirth.connect.client.core.api.Param;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -44,9 +41,9 @@ public interface VersionServletInterface extends BaseServletInterface {
 	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@ApiResponse(responseCode = "200", description = "Returns current CommunicationPlatform version data from ENV", content = {
-			@Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = VersionModel.class)),
-			@Content(mediaType = MediaType.APPLICATION_XML, schema = @Schema(implementation = VersionModel.class))
+			@Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = String.class)),
+			@Content(mediaType = MediaType.APPLICATION_XML, schema = @Schema(implementation = String.class))
 	})
 	@MirthOperation(name = "getVersionData", display = "Get current CommunicationPlatform version data from ENV")
-	VersionModel getVersionData() throws ClientException;
+	String getVersionData() throws ClientException;
 }
